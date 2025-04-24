@@ -10,6 +10,8 @@ class File(models.Model):
 
 class Rule(models.Model):
     file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='rules')
+    article_num = models.TextField()
+    section_num = models.TextField()
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -19,7 +21,8 @@ class Rule(models.Model):
 class RuleEmbedding(models.Model):
     rule = models.OneToOneField(Rule, on_delete=models.CASCADE, related_name='embedding')
     embedding = models.BinaryField()  # Atau JSONField jika pakai array/list
-
+    created_at = models.DateTimeField(auto_now_add=True)
+    
 class Comparison(models.Model):
     rule1 = models.ForeignKey(Rule, on_delete=models.CASCADE, related_name='comparisons_from')
     rule2 = models.ForeignKey(Rule, on_delete=models.CASCADE, related_name='comparisons_to')

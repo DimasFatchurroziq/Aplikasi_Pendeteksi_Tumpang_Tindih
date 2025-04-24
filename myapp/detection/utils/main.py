@@ -1,9 +1,9 @@
 import os
 
-from extract_utils import Extractor
-from split_utils import Splitter
-from sbert_utils import SentenceBert
-from cosinesimilarity_utils import CosineSimilarity
+from extract_util import Extractor
+from split_util import Splitter
+from sbert_util import SentenceBert
+from cosinesimilarity_util import CosineSimilarity
 
 # Step 1: Akses ke file / ddb
 pdf_path_1 = "../file/file_1"

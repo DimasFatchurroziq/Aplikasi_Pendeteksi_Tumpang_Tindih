@@ -1,11 +1,11 @@
 import pickle
-from utils.sbert_util  import SentenceBert
+from detection.models import Comparison
 
 class EmbeddingService:
-    def __init__(self, embedding_repository):
-        self.embedding_repository = embedding_repository
+    def __init__(self, comparison_repository):
+        self.comparison_repository = comparison_repository
     
-    def sbert_embedded(self, list_rule_objects):
+    def comparing_rule(self, list_rule_objects):
         sentencebert = SentenceBert()
         list_embeddings = sentencebert.embedding_content_tupple(list_rule_objects)
 
