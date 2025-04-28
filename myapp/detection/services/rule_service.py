@@ -22,6 +22,6 @@ class RuleService:
                 "content": rule[2]
             })
 
-            list_contents.append(saved ) 
+            list_contents.append(saved) 
 
         return list_contents

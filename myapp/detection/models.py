@@ -24,10 +24,17 @@ class RuleEmbedding(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
 class Comparison(models.Model):
-    rule1 = models.ForeignKey(Rule, on_delete=models.CASCADE, related_name='comparisons_from')
-    rule2 = models.ForeignKey(Rule, on_delete=models.CASCADE, related_name='comparisons_to')
+    rule_1 = models.ForeignKey(Rule, on_delete=models.CASCADE, related_name='comparisons_from')
+    rule_2 = models.ForeignKey(Rule, on_delete=models.CASCADE, related_name='comparisons_to')
     similarity_score = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    SCENARIO_CHOICES = [
+        ('same_doc', 'Same Document'),
+        ('diff_doc', 'Different Document'),
+    ]
+
+    scenario = models.CharField(max_length=20, choices=SCENARIO_CHOICES, default='same_doc')
+
     def __str__(self):
-        return f"Comparison ({self.similarity_score:.2f})"
+        return f"Comparison ({self.similarity_score:.2f}) - {self.get_scenario_display()}"

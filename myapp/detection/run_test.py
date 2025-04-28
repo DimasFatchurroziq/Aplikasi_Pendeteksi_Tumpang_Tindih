@@ -12,6 +12,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from detection.factories.factory import get_file_service
 from detection.factories.factory import get_rule_service
 from detection.factories.factory import get_embedding_service
+from detection.factories.factory import get_comparison_service
 
 def upload_file_to_db(path_file):
     file_service = get_file_service()
@@ -29,15 +30,20 @@ def upload_file_to_db(path_file):
 
 
     rule_service = get_rule_service()
-    list_contents = rule_service.extract_and_split(file_instance)
-    print(f"[✓] {len(list_contents)} aturan berhasil diekstrak")
+    list_rule_objects = rule_service.extract_and_split(file_instance)
+    print(f"[✓] {len(list_rule_objects)} aturan berhasil diekstrak")
 
-    # print(list_contents)
+    # print(list_rule_objects)
 
     
     embedding_service = get_embedding_service()
-    embedded = embedding_service.sbert_embedded(list_contents)
-    print(f"[✓] Embedding selesai untuk {len(embedded)} aturan")
+    list_embeddings = embedding_service.sbert_embedded(list_rule_objects)
+    print(f"[✓] Embedding selesai untuk {len(list_embeddings)} aturan")
+
+
+    comparison_service = get_comparison_service()
+    list_compare = comparison_service.comparing_rule_same_doc(list_rule_objects, list_embeddings)
+    print(f"[✓] Comparing selesai untuk {len(list_compare)} aturan")
 
 
 # def run(file_instance):

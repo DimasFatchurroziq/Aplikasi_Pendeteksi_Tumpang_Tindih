@@ -8,10 +8,12 @@ class ComparisonRepository:
     @staticmethod
     def save_comparison(data):
         return Comparison.objects.create(
-            rule=data["rule"],
-            comparison=data["comparison"]
+            rule_1=data["rule_1"],
+            rule_2=data["rule_2"],
+            similarity_score=data["similarity_score"],
+            scenario=data["scenario"],
         )
     
-    @staticmethod
-    def get_comparison_by_rule(rule_id):
-        return Comparison.objects.filter(rule_id=rule_id)
+    # @staticmethod
+    # def get_comparison_by_rule(rule_id):
+    #     return Comparison.objects.filter(rule_id=rule_id)

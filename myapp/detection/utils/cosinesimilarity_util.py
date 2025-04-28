@@ -2,20 +2,22 @@ from sentence_transformers import util
 import torch
 
 class CosineSimilarity:
-    def __init__(self, embedding1, pasals): #nnti di akhir tambahi embedding2,
-        self.embedding1 = embedding1
-        # self.embedding2 = embedding2
-        self.num_pasals = pasals
+    # def __init__(self, comparison_repository): #nnti di akhir tambahi embedding2,
+    #     self.comparison_repository = comparison_repository
 
-    def calculate_similarity(self):
-        hasil = []
-        num_pasals = len(self.embedding1)
-        for i in range(num_pasals):
-            for j in range(i + 1, num_pasals):
-                similarity_score = util.cos_sim(self.embedding1[i], self.embedding1[j])
-                formatted_score = round(similarity_score.item(), 4)  # dibulatkan 4 angka di belakang koma
-                hasil.append(formatted_score)
-        return hasil
+    # def calculate_similarity(self, embedding_1):
+    #     hasil = []
+    #     many_articles = len(embedding_1)
+    #     for i in range(many_articles):
+    #         for j in range(i + 1, many_articles):
+    #             similarity_score = util.cos_sim(embedding_1[i], embedding_1[j])
+    #             formatted_score = round(similarity_score.item(), 4)  # dibulatkan 4 angka di belakang koma
+    #             hasil.append(formatted_score)
+    #     return hasil
+
+    def calculate_similarity(self, embedding_1, embedding_2):
+        similarity_score = util.cos_sim(embedding_1, embedding_2)
+        return similarity_score
     
 
 
