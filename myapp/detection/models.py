@@ -11,7 +11,8 @@ class File(models.Model):
 class Rule(models.Model):
     file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='rules')
     article_num = models.TextField()
-    section_num = models.TextField()
+    section_num = models.TextField(null=True, blank=True)
+    point_num = models.TextField(null=True, blank=True)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

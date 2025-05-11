@@ -11,6 +11,7 @@ class RuleRepository:
             file=data["file"],
             article_num=data["article_num"],
             section_num=data["section_num"],
+            point_num=data["point_num"],
             content=data["content"]
         )
 

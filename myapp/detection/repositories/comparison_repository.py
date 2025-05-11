@@ -14,6 +14,3 @@ class ComparisonRepository:
             scenario=data["scenario"],
         )
     
-    # @staticmethod
-    # def get_comparison_by_rule(rule_id):
-    #     return Comparison.objects.filter(rule_id=rule_id)

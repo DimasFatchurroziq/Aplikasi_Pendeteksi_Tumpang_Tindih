@@ -19,7 +19,8 @@ class RuleService:
                 "file": file,  # gunakan parameter `file` langsung (bukan self.file)
                 "article_num": rule[0],
                 "section_num": rule[1],
-                "content": rule[2]
+                "point_num": rule[2],
+                "content": rule[3]
             })
 
             list_contents.append(saved) 

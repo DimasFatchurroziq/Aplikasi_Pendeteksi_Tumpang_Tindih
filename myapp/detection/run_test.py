@@ -33,7 +33,6 @@ def upload_file_to_db(path_file):
     list_rule_objects = rule_service.extract_and_split(file_instance)
     print(f"[✓] {len(list_rule_objects)} aturan berhasil diekstrak")
 
-    # print(list_rule_objects)
 
     
     embedding_service = get_embedding_service()
@@ -45,18 +44,7 @@ def upload_file_to_db(path_file):
     list_compare = comparison_service.comparing_rule_same_doc(list_rule_objects, list_embeddings)
     print(f"[✓] Comparing selesai untuk {len(list_compare)} aturan")
 
-
-# def run(file_instance):
-#     rule_service = get_rule_service()
-#     list_tuple_rules = rule_service.extract_and_split(file_instance)
-#     print(f"[✓] {len(list_tuple_rules)} aturan berhasil diekstrak")
-
 if __name__ == "__main__":
     # Path ke file PDF yang ingin di-upload
-    path_file = os.path.join("file", "file_1", "ujicoba.pdf")
+    path_file = os.path.join("file", "file_1", "asu1.pdf")
     upload_file_to_db(path_file)
-
-
-# list_tuple_rules = RuleService.extract_and_split(file_instance)
-# embedded = EmbeddingService.sbert_embedded(list_tuple_rules)
-# comparisons = ComparisonService.compare_within_rules(embedded)
