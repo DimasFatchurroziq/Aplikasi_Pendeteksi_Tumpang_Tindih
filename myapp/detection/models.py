@@ -38,4 +38,8 @@ class Comparison(models.Model):
     scenario = models.CharField(max_length=20, choices=SCENARIO_CHOICES, default='same_doc')
 
     def __str__(self):
-        return f"Comparison ({self.similarity_score:.2f}) - {self.get_scenario_display()}"
+        score = self.similarity_score
+        if isinstance(score, torch.Tensor):
+            score = score.item()
+        return f"Comparison ({score:.2f}) - {self.get_scenario_display()}"
+

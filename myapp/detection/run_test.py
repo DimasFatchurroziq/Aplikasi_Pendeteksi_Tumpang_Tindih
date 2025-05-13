@@ -13,6 +13,7 @@ from detection.factories.factory import get_file_service
 from detection.factories.factory import get_rule_service
 from detection.factories.factory import get_embedding_service
 from detection.factories.factory import get_comparison_service
+from detection.factories.factory import get_sementara_service
 
 def upload_file_to_db(path_file):
     file_service = get_file_service()
@@ -34,7 +35,6 @@ def upload_file_to_db(path_file):
     print(f"[✓] {len(list_rule_objects)} aturan berhasil diekstrak")
 
 
-    
     embedding_service = get_embedding_service()
     list_embeddings = embedding_service.sbert_embedded(list_rule_objects)
     print(f"[✓] Embedding selesai untuk {len(list_embeddings)} aturan")
@@ -43,6 +43,12 @@ def upload_file_to_db(path_file):
     comparison_service = get_comparison_service()
     list_compare = comparison_service.comparing_rule_same_doc(list_rule_objects, list_embeddings)
     print(f"[✓] Comparing selesai untuk {len(list_compare)} aturan")
+
+
+    treshold = 0.8
+    sementara_service = get_sementara_service()
+    list_treshold = sementara_service.treshold_filtering(list_compare, treshold)
+    print(list_treshold)
 
 if __name__ == "__main__":
     # Path ke file PDF yang ingin di-upload
